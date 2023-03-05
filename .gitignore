@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+static/photos/
+init_db.py
+requirements.txt
