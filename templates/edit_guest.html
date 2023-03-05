@@ -1,0 +1,42 @@
+{% extends "base.html"%}
+{%block title%}Редагувати гостя{%endblock%}
+{%block content%}
+  <h1>Редагувати гостя</h1>
+  <form method="post" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <br><h3>{{ guest.name }}</h3><br>
+    <br>{{ form.profile_image.label }} {{ form.profile_image }}
+    <p><img class="profile_image" src="{{ url_for('static', filename=guest.profile_image) }}"
+                alt="{{ guest.profile_image }}" width="auto" height="auto"></p><br>
+    <br>{{ form.sex.label }}<br>
+    {% for sex in form.sex %}
+      {{ sex }} {{ sex.label }}<br>
+    {% endfor %}
+    <br>{{ form.age.label }} {{ form.age }}<br>
+    <br>{{ form.description.label }} {{ form.description }}<br>
+    <br>{{ form.phone_number.label }} {{ form.phone_number }}<br>
+    <br>{{ form.contact.label }} {{ form.contact }}<br>
+    <br>{{ form.table_number.label }} {{ form.table_number }}<br>
+    <br>{{ form.seat_number.label }} {{ form.seat_number }}<br>
+    <br>{{ form.side.label }}<br>
+    {% for side in form.side %}
+      {{ side }} {{ side.label }}<br>
+    {% endfor %}
+    <br>{{ form.cancel }}
+    {% if form.side.errors %}
+      <ul class="errors">
+      {% for error in form.side.errors %}
+          <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+    <input type="submit" value="Зберегти гостя">
+  </form>
+  {% if form.errors %}
+      <ul class="errors">
+      {% for error in form.errors %}
+          <li>{{ error }}</li>
+      {% endfor %}
+      </ul>
+  {% endif %}
+{%endblock%}

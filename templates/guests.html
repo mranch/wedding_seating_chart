@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Всі гості{% endblock %}
+{% block content %}
+{% for guest in guests %}
+<div>
+    <br>
+    <hr>
+    <div class="outer-div">
+        <a class="outer-div-guest-name" href="{{ url_for('guest_info', guest_id=guest.id) }}">{{ guest.name }}</a>
+        <a href="{{ url_for('guest_info', guest_id=guest.id) }}"
+           title="{{ guest.profile_image }}">
+            <img
+                 src="{{ url_for('static', filename=guest.profile_image) }}"
+                 alt="{{ guest.profile_image }}" width="200" height="200">
+        </a>
+        {% if basic_auth.authenticate() %}
+        <div class="inner-div">
+            <a title="Редагувати гостя" href="{{ url_for('edit_guest', guest_id=guest.id) }}">
+                <img class="my_button" src="{{ url_for('static', filename='edit.png') }}">
+            </a>
+            <a title="Видалити гостя" href="{{ url_for('delete_guest', guest_id=guest.id) }}">
+                <img class="my_button" src="{{ url_for('static', filename='remove.png') }}">
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endfor %}
+<hr>
+{% endblock %}

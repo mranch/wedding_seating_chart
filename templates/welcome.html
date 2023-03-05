@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Наше весілля{% endblock %}
+{% block content %}
+<h1 class="title">Посадка гостей</h1>
+<div>
+    <div class="tables_grid">
+        {% for table_id in guests %}
+        {% if table_id != "--" %}
+        <div class="col">
+            <h3 class="title"><a href="{{ url_for('table_info', table_id=table_id) }}">Стіл {{ table_id }}</a></h3>
+            <ol>
+                {% for seat_number in guests[table_id] %}
+                {% if guests[table_id][seat_number] %}
+                {% if seat_number != "--" %}
+                <li><a href="{{ url_for('guest_info', guest_id=guests[table_id][seat_number].id) }}"><h4>{{ guests[table_id][seat_number].name }}</h4></a></li>
+                {% endif %}
+                {% else %}
+                <li>Порожнє місце</li>
+                {% endif %}
+                {% endfor %}
+            </ol>
+            {% if guests[table_id]["--"] %}
+                <h3>Гості без місця, але за столом</h3>
+                <ul>
+                    {% for guest_without_seat in guests[table_id]["--"] %}
+                    <br>
+                    <li>
+                        <a href="{{ url_for('guest_info', guest_id=guest_without_seat.id) }}">
+                            <h4>{{ guest_without_seat.name }}</h4>
+                        </a>
+                    </li>
+                    <br>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% if guests["--"] %}
+    <div class="title">
+        <h3>Гості без стола</h3>
+        <ul>
+            {% for guest in guests["--"] %}
+            <li><a href="{{ url_for('guest_info', guest_id=guest.id) }}"><h4>{{ guest.name }}</h4></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}{{ guest.name }}{% endblock %}
+{% block content %}
+<div class="guest_grid">
+    <div class="guest_info">
+        <br>
+        {% if guest.sex == "Чоловік" %}
+            {% set sex = "чоловічої" %}
+        {% elif guest.sex == "Жінка" %}
+            {% set sex = "жіночої" %}
+        {% else %}
+            {% set sex = "невідомої" %}
+        {% endif %}
+        {% if guest.side == "Наречена" %}
+            {% set side = "нареченої" %}
+        {% elif guest.side == "Наречений" %}
+            {% set side = "нареченого" %}
+        {% else %}
+            {% set side = "обох наречених" %}
+        {% endif %}
+        <p>{{ guest.name }} ({{ sex }} статі) віком {{ guest.age }} років,
+            рахується зі сторони {{ side }}.</p><br>
+        {% if guest.table_number %}
+            {% set seat_info = "Сидить за  " + guest.table_number|string + " столом" %}
+            {% if guest.seat_number %}
+                {% set seat_info = seat_info + ", " + guest.seat_number|string + " місце" %}
+            {% endif %}
+            <p>{{ seat_info }}.</p><br>
+        {% endif %}
+        {% if guest.description %}
+            <p>Невеликий опис: {{ guest.description }}</p><br>
+        {% endif %}
+        {% if guest.phone_number %}
+            <p>Номер телефону: {{ guest.phone_number }}</p><br>
+        {% endif %}
+        {% if guest.contact %}
+            <p>Інші контактні дані: {{ guest.contact }}</p><br>
+        {% endif %}
+    </div>
+    <div class="profile_image">
+        <p><img class="profile_image"
+                src="{{ url_for('static', filename=guest.profile_image) }}"
+                alt="{{ guest.profile_image }}" width="auto"></p>
+        {% if basic_auth.authenticate() %}
+        <p><a href="{{ url_for('edit_guest', guest_id=guest.id) }}">Редагувати гостя</a>
+        </p>
+        <p><a href="{{ url_for('delete_guest', guest_id=guest.id) }}">Видалити гостя</a>
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

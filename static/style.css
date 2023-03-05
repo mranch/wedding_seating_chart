@@ -1,0 +1,99 @@
+body, html {
+    font-family: sans-serif;
+    color: cornflowerblue;
+    background-color: floralwhite;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.tables_grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 50px;
+    margin-top: 50px;
+}
+
+.guest_grid {
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.col {
+    text-align: center;
+}
+
+.col:nth-child(1) {
+    grid-column: 1;
+}
+
+.col:nth-child(2) {
+    grid-column: 3;
+}
+
+.col:nth-child(3) {
+    grid-column: 5;
+}
+
+.col:nth-child(4) {
+    grid-column: 2;
+}
+
+.col:nth-child(5) {
+    grid-column: 4;
+}
+
+.title {
+    text-align: center;
+}
+
+.nav {
+    background-color: aliceblue;
+    background-clip: padding-box;
+    margin: 0;
+    padding: 10px;
+}
+
+.nav li {
+    display: inline;
+    padding: 14px 16px;
+    border: 1px solid whitesmoke;
+}
+
+ul {
+    padding-left: 0;
+}
+
+ul li {
+    list-style-position: inside;
+}
+
+li h4 {
+    display: inline;
+}
+
+ol li:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.outer-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.outer-div-guest-name {
+    padding-right: 10px;
+    width: 150px;
+}
+
+.my_button {
+    width: 30px;
+    height: 30px;
+    background: floralwhite;
+    padding-left: 30px;
+}
