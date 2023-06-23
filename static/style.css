@@ -89,7 +89,7 @@ ol li:not(:last-child) {
 .outer-div-guest-name {
     padding-right: 10px;
     width: 150px;
-    font-size: 48px;
+    font-size: 24px;
 }
 
 .my_button {
