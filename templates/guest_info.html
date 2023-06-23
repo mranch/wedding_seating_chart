@@ -34,9 +34,7 @@
             <p>Номер телефону: {{ guest.phone_number }}</p><br>
         {% endif %}
         {% if guest.contact %}
-            {% autoescape false %}
-                <p>Інші контактні дані: {{ guest.contact }}</p><br>
-            {% endautoescape %}
+            <pre>Інші контактні дані: {{ guest.contact }}</pre><br>
         {% endif %}
     </div>
     <div class="profile_image">
