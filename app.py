@@ -23,6 +23,8 @@ from model import (
     delete_guest_by_id
 )
 
+PREV_URL = ""
+
 
 def create_app():
     load_dotenv()
@@ -100,12 +102,10 @@ def create_app():
         guest = get_guest_by_id(guest_id)
         return render_template("guest_info.html", guest=guest, basic_auth=basic_auth)
 
-    PREV_URL = ""
-
     @app.route("/edit/<int:guest_id>", methods=["GET", "POST"])
     @basic_auth.required
     def edit_guest(guest_id):
-        nonlocal PREV_URL
+        global PREV_URL
         guest = get_guest_by_id(guest_id)
         form = GuestEditForm(data=guest.__dict__)
 
@@ -136,7 +136,7 @@ def create_app():
         guest = get_guest_by_id(guest_id, escape_none=True)
         form = GuestForm(data=guest.__dict__)
 
-        nonlocal PREV_URL
+        global PREV_URL
         if request.method == "GET":
             PREV_URL = request.referrer
 
