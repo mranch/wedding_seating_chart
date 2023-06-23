@@ -130,4 +130,4 @@ dmypy.json
 
 static/photos/
 init_db.py
-requirements.txt
+.idea/
