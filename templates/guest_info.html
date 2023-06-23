@@ -31,10 +31,10 @@
             <p>Невеликий опис: {{ guest.description }}</p><br>
         {% endif %}
         {% if guest.phone_number %}
-            <p>Номер телефону: {{ guest.phone_number }}</p><br>
+            <p>Номер телефону: <pre>{{ guest.phone_number }}</pre></p><br>
         {% endif %}
         {% if guest.contact %}
-            <pre>Інші контактні дані: {{ guest.contact }}</pre><br>
+            <p>Інші контактні дані: <pre>{{ guest.contact }}</pre></p><br>
         {% endif %}
     </div>
     <div class="profile_image">
