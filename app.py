@@ -1,5 +1,6 @@
 import flask.cli
 import os
+import psycopg2
 from dotenv import load_dotenv
 from flask import (
     Flask,
@@ -77,7 +78,10 @@ def create_app():
                 filename = os.getenv("DEFAULT_PROFILE_IMAGE_NAME")
             insert_data = form.data
             insert_data["profile_image"] = filename
-            insert_guest(**insert_data)
+            try:
+                insert_guest(**insert_data)
+            except psycopg2.errors.UniqueViolation as e:
+                print(e)
 
             return redirect(url_for('welcome'))
         return render_template("add_guest.html", form=form, basic_auth=basic_auth)
@@ -141,6 +145,7 @@ def create_app():
             return redirect(PREV_URL)
 
         return render_template("delete_guest.html", form=form, guest=guest, basic_auth=basic_auth)
+
     return app
 
 

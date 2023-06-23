@@ -89,7 +89,7 @@ def insert_guest(**kwargs):
     kwargs = pop_unused_keys(kwargs)
     kwargs = validate_table_seat_numbers(kwargs)
 
-    query = f'INSERT IGNORE INTO guests (guest_name, profile_image, guest_sex, guest_age, ' \
+    query = f'INSERT INTO guests (guest_name, profile_image, guest_sex, guest_age, ' \
             f'guest_description, guest_phone_number, guest_contact, table_number, ' \
             f'seat_number, guest_side) VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s ) RETURNING id;'
     execute_query(query, (tuple(kwargs.values())))
