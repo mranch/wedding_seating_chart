@@ -15,7 +15,7 @@ class GuestForm(FlaskForm):
     description = TextAreaField("Опис", validators=[Optional()])
     phone_number = TelField("Номер телефону", validators=[Optional()], render_kw={"pattern": r"(((\+)?3)?8)?\d{10}"},
                             default="+380")
-    contact = StringField("Інша контактна інформація", validators=[Optional()])
+    contact = TextAreaField("Інша контактна інформація", validators=[Optional()])
     table_number = SelectField("Номер столу", choices=["--"] + list(range(1, 6)))
     seat_number = SelectField("Номер місця", choices=["--"] + list(range(1, 12)))
     side = RadioField("Сторона", choices=[side.value for side in Side], default="Наречені")
