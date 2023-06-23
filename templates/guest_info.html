@@ -28,10 +28,10 @@
             <p>{{ seat_info }}.</p><br>
         {% endif %}
         {% if guest.description %}
-            <p>Невеликий опис: {{ guest.description }}</p><br>
+            <p>Невеликий опис: <pre>{{ guest.description }}</pre>></p><br>
         {% endif %}
         {% if guest.phone_number %}
-            <p>Номер телефону: <pre>{{ guest.phone_number }}</pre></p><br>
+            <p>Номер телефону: {{ guest.phone_number }}</p><br>
         {% endif %}
         {% if guest.contact %}
             <p>Інші контактні дані: <pre>{{ guest.contact }}</pre></p><br>
