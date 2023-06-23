@@ -105,7 +105,7 @@ def create_app():
     @app.route("/edit/<int:guest_id>", methods=["GET", "POST"])
     @basic_auth.required
     def edit_guest(guest_id):
-        global PREV_URL
+        nonlocal PREV_URL
         guest = get_guest_by_id(guest_id)
         form = GuestEditForm(data=guest.__dict__)
 
@@ -136,7 +136,7 @@ def create_app():
         guest = get_guest_by_id(guest_id, escape_none=True)
         form = GuestForm(data=guest.__dict__)
 
-        global PREV_URL
+        nonlocal PREV_URL
         if request.method == "GET":
             PREV_URL = request.referrer
 
