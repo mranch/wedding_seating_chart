@@ -11,7 +11,7 @@ load_dotenv()
 
 def execute_query(query, values=tuple(), fetchall=False, fetchone=False):
     def get_db_connection():
-        conn = psycopg2.connect(host='localhost',
+        conn = psycopg2.connect(host=os.environ['FLASK_DB_HOSTNAME'],
                                 database='wedding_seating_chart',
                                 user=os.environ['FLASK_DB_USERNAME'],
                                 password=os.environ['FLASK_DB_PASSWORD'])
