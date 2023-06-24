@@ -146,5 +146,5 @@ def delete_guest_by_id(guest_id):
 
 def get_guest_by_table_seat_number(table_number, seat_number):
     query = f"SELECT * FROM guests WHERE table_number = %s AND seat_number = %s;"
-    guest = execute_query(query, (int(table_number), int(seat_number)), fetchone=True)
+    guest = execute_query(query, (table_number, seat_number), fetchone=True)
     return Guest(guest) if guest and guest[8] and guest[9] else None
