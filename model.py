@@ -101,13 +101,13 @@ def update_guest(**kwargs):
 
     query = f'UPDATE guests SET guest_name = %s, profile_image = %s, guest_sex = %s, guest_age = %s, ' \
             f'guest_description = %s, guest_phone_number = %s, guest_contact = %s, table_number = %s, ' \
-            f'seat_number = %s, guest_side = %s WHERE id = %s;'
+            f'seat_number = %s, guest_side = %s, update_date = now() WHERE id = %s;'
 
     execute_query(query, (tuple(kwargs.values())))
 
 
 def get_all_guests():
-    query = 'SELECT * FROM guests;'
+    query = 'SELECT * FROM guests order by create_date;'
     guests = execute_query(query, fetchall=True)
     res = [Guest(guest) for guest in guests]
     return res
