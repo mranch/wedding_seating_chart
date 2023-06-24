@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Столи{% endblock %}
 {% block content %}
+<div style="margin-top: 100px;">
   <ul>
     {% for i in range(1, 6) %}
-      <li><a href="{{ url_for('table_info', table_id=i) }}">Стіл {{ i }}</a></li>
+      <li><a href="{{ url_for('table_info', table_id=i) }}">Стіл {{ i }}</a></li><br>
     {% endfor %}
   </ul>
+</div>
 {% endblock %}

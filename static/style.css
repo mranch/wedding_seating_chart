@@ -20,6 +20,7 @@ a {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(2, 1fr);
+    margin-top: 100px;
 }
 
 .col {
@@ -53,14 +54,22 @@ a {
 .nav {
     background-color: aliceblue;
     background-clip: padding-box;
-    margin: 0;
     padding: 10px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .nav li {
     display: inline;
     padding: 14px 16px;
     border: 1px solid whitesmoke;
+}
+
+.nav a:hover {
+    background: #dddddd;
+    color: black;
 }
 
 ul {
@@ -89,7 +98,7 @@ ol li:not(:last-child) {
 .outer-div-guest-name {
     padding-right: 10px;
     width: 150px;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .my_button {

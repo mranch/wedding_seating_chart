@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<nav>
-    <ul class="nav">
-        <li><a href="{{ url_for('welcome') }}">На головну</a></li>
-        <li><a href="{{ url_for('guests_list') }}">Всі гості</a></li>
-        <li><a href="{{ url_for('tables') }}">Столи</a></li>
-        {% if basic_auth.authenticate() %}
-            <li><a href="{{ url_for('add_guest') }}">Додати гостя</a></li>
-        {% endif %}
-    </ul>
-</nav>
+    <div class="nav">
+        <ul>
+            <li><a href="{{ url_for('welcome') }}">На головну</a></li>
+            <li><a href="{{ url_for('guests_list') }}">Всі гості</a></li>
+            <li><a href="{{ url_for('tables') }}">Столи</a></li>
+            {% if basic_auth.authenticate() %}
+                <li><a href="{{ url_for('add_guest') }}">Додати гостя</a></li>
+            {% endif %}
+        </ul>
+    </div>
     {% block content %}{% endblock %}
 </body>
 </html>

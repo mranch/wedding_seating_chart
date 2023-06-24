@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Наше весілля{% endblock %}
 {% block content %}
-<h1 class="title">Посадка гостей</h1>
-<div>
+<div style="margin-top: 100px;">
+    <h1 class="title">Посадка гостей</h1>
     <div class="tables_grid">
         {% for table_id in guests %}
         {% if table_id != "--" %}

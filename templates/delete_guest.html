@@ -1,6 +1,7 @@
 {% extends "base.html"%}
 {%block title%}Видалити гостя{%endblock%}
 {%block content%}
+<div style="margin-top: 100px;">
   <h1>Видалити гостя {{ guest.name }} ?</h1>
   <form method="post" enctype="multipart/form-data">
     {{ form.csrf_token }}
@@ -13,5 +14,6 @@
           <li>{{ error }}</li>
       {% endfor %}
       </ul>
+</div>
   {% endif %}
 {%endblock%}
