@@ -134,15 +134,18 @@ def create_app():
     @basic_auth.required
     def delete_guest(guest_id):
         guest = get_guest_by_id(guest_id, escape_none=True)
-        form = GuestForm(data=guest.__dict__)
+        form = GuestEditForm(data=guest.__dict__)
 
         global PREV_URL
         if request.method == "GET":
             PREV_URL = request.referrer
+        else:
+            if form.cancel.data:
+                return redirect(PREV_URL)
 
         if form.validate_on_submit():
             delete_guest_by_id(guest_id)
-            return redirect(PREV_URL)
+            return redirect(url_for('welcome'))
 
         return render_template("delete_guest.html", form=form, guest=guest, basic_auth=basic_auth)
 

@@ -22,4 +22,4 @@ class GuestForm(FlaskForm):
 
 class GuestEditForm(GuestForm):
     delete = SubmitField("Видалити гостя")
-    cancel = SubmitField("Відмінити зміни")
+    cancel = SubmitField("Відмінити")

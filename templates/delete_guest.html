@@ -4,6 +4,7 @@
   <h1>Видалити гостя {{ guest.name }} ?</h1>
   <form method="post" enctype="multipart/form-data">
     {{ form.csrf_token }}
+    <br>{{ form.cancel }}
     <input type="submit" value="Видалити гостя">
   </form>
   {% if form.errors %}
