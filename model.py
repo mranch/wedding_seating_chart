@@ -3,7 +3,6 @@ import psycopg2
 from dotenv import load_dotenv
 from enum import Enum
 from flask import abort
-from flask_login import UserMixin
 from typing import Optional
 
 load_dotenv()
@@ -95,15 +94,27 @@ def insert_guest(**kwargs):
     execute_query(query, (tuple(kwargs.values())))
 
 
-def update_guest(**kwargs):
-    kwargs = pop_unused_keys(kwargs)
-    kwargs = validate_table_seat_numbers(kwargs)
-
+def run_update_query(**kwargs):
     query = f'UPDATE guests SET guest_name = %s, profile_image = %s, guest_sex = %s, guest_age = %s, ' \
             f'guest_description = %s, guest_phone_number = %s, guest_contact = %s, table_number = %s, ' \
             f'seat_number = %s, guest_side = %s, update_date = now() WHERE id = %s;'
 
-    execute_query(query, (tuple(kwargs.values())))
+    execute_query(query, ((kwargs["name"], kwargs["profile_image"], kwargs["sex"], kwargs["age"],
+                           kwargs["description"], kwargs["phone_number"], kwargs["contact"],
+                           kwargs["table_number"], kwargs["seat_number"], kwargs["side"], kwargs["id"])))
+
+
+def update_guest(**kwargs):
+    kwargs = pop_unused_keys(kwargs)
+    kwargs = validate_table_seat_numbers(kwargs)
+
+    current_guest = get_guest_by_table_seat_number(kwargs["table_number"], kwargs["seat_number"])
+    if current_guest:
+        current_guest_update_data = current_guest.__dict__
+        current_guest_update_data["table_number"] = None
+        current_guest_update_data["seat_number"] = None
+        run_update_query(**current_guest_update_data)
+    run_update_query(**kwargs)
 
 
 def get_all_guests():
@@ -131,3 +142,9 @@ def get_guests_by_table(table_id):
 def delete_guest_by_id(guest_id):
     query = f"DELETE FROM guests WHERE ID = %s;"
     execute_query(query, ((guest_id,),))
+
+
+def get_guest_by_table_seat_number(table_number, seat_number):
+    query = f"SELECT * FROM guests WHERE table_number = %s AND seat_number = %s;"
+    guest = execute_query(query, (int(table_number), int(seat_number)), fetchone=True)
+    return Guest(guest) if guest and guest[8] and guest[9] else None
