@@ -111,7 +111,6 @@ def update_guest(**kwargs):
     current_guest = get_guest_by_table_seat_number(kwargs["table_number"], kwargs["seat_number"])
     if current_guest:
         current_guest_update_data = current_guest.__dict__
-        current_guest_update_data["table_number"] = None
         current_guest_update_data["seat_number"] = None
         run_update_query(**current_guest_update_data)
     run_update_query(**kwargs)
