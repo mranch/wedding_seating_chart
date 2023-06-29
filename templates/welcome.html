@@ -8,15 +8,15 @@
         {% if table_id != "--" %}
         <div class="col">
             <h3 class="title"><a href="{{ url_for('table_info', table_id=table_id) }}">Стіл {{ table_id }}</a></h3>
-            <ol>
+            <ul style="list-style: none;">
                 {% for seat_number in guests[table_id] %}
                 {% if guests[table_id][seat_number] %}
                 {% if seat_number != "--" %}
-                <li><a href="{{ url_for('guest_info', guest_id=guests[table_id][seat_number].id) }}"><h4>{{ guests[table_id][seat_number].name }}</h4></a></li>
+                <li><a href="{{ url_for('guest_info', guest_id=guests[table_id][seat_number].id) }}"><h4>{{ seat_number }}. {{ guests[table_id][seat_number].name }}</h4></a></li><br>
                 {% endif %}
                 {% endif %}
                 {% endfor %}
-            </ol>
+            </ul>
             {% if guests[table_id]["--"] %}
                 <h3>Гості без місця, але за столом</h3>
                 <ul>
