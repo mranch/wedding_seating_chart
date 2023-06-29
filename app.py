@@ -95,7 +95,7 @@ def create_app():
     @app.route("/tables/<int:table_id>")
     def table_info(table_id):
         table_guests = get_guests_by_table(table_id)
-        return render_template("table_info.html", table_guests=table_guests, table_id=table_id, basic_auth=basic_auth)
+        return render_template("guests.html", guests=table_guests, basic_auth=basic_auth)
 
     @app.route("/guests/<int:guest_id>")
     def guest_info(guest_id):

@@ -14,8 +14,6 @@
                 {% if seat_number != "--" %}
                 <li><a href="{{ url_for('guest_info', guest_id=guests[table_id][seat_number].id) }}"><h4>{{ guests[table_id][seat_number].name }}</h4></a></li>
                 {% endif %}
-                {% else %}
-                <li>Порожнє місце</li>
                 {% endif %}
                 {% endfor %}
             </ol>

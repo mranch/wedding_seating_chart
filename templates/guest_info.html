@@ -18,8 +18,12 @@
         {% else %}
             {% set side = "обох наречених" %}
         {% endif %}
-        <p>{{ guest.name }} ({{ sex }} статі) віком {{ guest.age }} років,
-            рахується зі сторони {{ side }}.</p><br>
+        {% if guest.age %}
+            {% set age = "віком " + guest.age|string + " років" %}
+        {% else %}
+            {% set age = "невідомого віку" %}
+        {% endif %}
+        <p>{{ guest.name }} ({{ sex }} статі) {{ age }}, рахується зі сторони {{ side }}.</p><br>
         {% if guest.table_number %}
             {% set seat_info = "Сидить за  " + guest.table_number|string + " столом" %}
             {% if guest.seat_number %}

@@ -5,7 +5,7 @@
   <h1>Редагувати гостя</h1>
   <form method="post" enctype="multipart/form-data">
     {{ form.csrf_token }}
-    <br><h3>{{ guest.name }}</h3><br>
+    <br><h3>{{ form.name }}</h3><br>
     <br>{{ form.profile_image.label }} {{ form.profile_image }}
     <p><img class="profile_image" src="{{ url_for('static', filename=guest.profile_image) }}"
                 alt="{{ guest.profile_image }}" width="auto" height="auto"></p><br>

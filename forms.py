@@ -10,8 +10,7 @@ class GuestForm(FlaskForm):
     name = StringField("Ім'я", validators=[DataRequired()])
     profile_image = FileField("Фото", validators=[Optional()])
     sex = RadioField("Стать", choices=[sex.value for sex in Sex], default="Невідомо")
-    age = IntegerField("Вік", validators=[Optional(), NumberRange(min=1, max=100, message="Введіть реальний вік!")],
-                       default=18)
+    age = IntegerField("Вік", validators=[Optional(), NumberRange(min=1, max=100, message="Введіть реальний вік!")])
     description = TextAreaField("Опис", validators=[Optional()])
     phone_number = TelField("Номер телефону", validators=[Optional()], render_kw={"pattern": r"(((\+)?3)?8)?\d{10}"})
     contact = TextAreaField("Інша контактна інформація", validators=[Optional()])
