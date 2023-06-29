@@ -2,13 +2,13 @@
 {% block title %}Наше весілля{% endblock %}
 {% block content %}
 <div style="margin-top: 100px;">
-    <h1 class="title">Посадка гостей</h1>
+    <h1 class="main_title">Посадка гостей</h1>
     <div class="tables_grid">
         {% for table_id in guests %}
         {% if table_id != "--" %}
         <div class="col">
             <h3 class="title"><a href="{{ url_for('table_info', table_id=table_id) }}">Стіл {{ table_id }}</a></h3>
-            <ul style="list-style: none;">
+            <ul style="list-style: none; text-align: left; padding-left: 20px;">
                 {% for seat_number in guests[table_id] %}
                 {% if guests[table_id][seat_number] %}
                 {% if seat_number != "--" %}
